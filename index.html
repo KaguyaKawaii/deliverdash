@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DeliverDash - Premium Delivery Services</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+    
+    :root {
+      --primary: #10b981;
+      --primary-dark: #059669;
+      --secondary: #ef4444;
+      --secondary-dark: #dc2626;
+      --dark: #0f172a;
+      --darker: #020617;
+      --light: #f8fafc;
+    }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--darker);
+      color: var(--light);
+      scroll-behavior: smooth;
+    }
+    
+    .gradient-text {
+      background: linear-gradient(90deg, #10b981, #ef4444);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    
+    .glass-card {
+      background: rgba(15, 23, 42, 0.7);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+    }
+    
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      transition: all 0.3s ease;
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 15px -3px rgba(16, 185, 129, 0.3);
+    }
+    
+    .btn-secondary {
+      background: linear-gradient(135deg, var(--secondary), var(--primary));
+      transition: all 0.3s ease;
+    }
+    
+    .btn-secondary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 15px -3px rgba(239, 68, 68, 0.3);
+    }
+    
+    .animate-float {
+      animation: float 6s ease-in-out infinite;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+    
+    .hero-pattern {
+      background-image: radial-gradient(circle at 25% 50%, rgba(16, 185, 129, 0.1) 0%, rgba(239, 68, 68, 0.1) 50%, transparent 100%);
+    }
+    
+    .text-emerald {
+      color: #10b981;
+    }
+    
+    .text-red {
+      color: #ef4444;
+    }
+    
+    .border-emerald {
+      border-color: #10b981;
+    }
+    
+    .border-red {
+      border-color: #ef4444;
+    }
+    
+    .bg-emerald-gradient {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(239, 68, 68, 0.1));
+    }
+    
+    .pulse {
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
+      70% { box-shadow: 0 0 0 15px rgba(16, 185, 129, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+    }
+    
+    
+  </style>
+</head>
+<body class="antialiased">
+  <!-- Navigation Bar -->
+  <nav class="bg-gray-900/80 fixed w-full top-0 z-50 py-4 shadow-lg backdrop-blur-md border-b border-gray-800">
+    <div class="container mx-auto flex justify-between items-center px-6 lg:px-12">
+      <a href="#" class="text-3xl font-extrabold">
+        <span class="text-white">Deliver</span><span class="text-red">Dash</span>
+      </a>
+      
+      <div class="hidden md:flex items-center space-x-8">
+        <ul class="flex space-x-8 text-lg">
+          <li><a href="#about" class="font-medium hover:text-emerald transition-colors">About</a></li>
+          <li><a href="#features" class="font-medium hover:text-red transition-colors">Features</a></li>
+          <li><a href="#how-it-works" class="font-medium hover:text-emerald transition-colors">How It Works</a></li>
+          <li><a href="#contact" class="font-medium hover:text-red transition-colors">Contact</a></li>
+        </ul>
+        <div class="ml-8 flex space-x-4">
+          <a href="users/user_login.php" class="px-6 py-2 rounded-lg font-medium hover:bg-gray-800 transition-colors">Login</a>
+          <a href="users/user_register.php" class="btn-primary px-6 py-2 rounded-lg font-medium text-white">Get Started</a>
+        </div>
+      </div>
+      
+      <button class="md:hidden text-white text-2xl" id="mobile-menu-btn">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="md:hidden bg-gray-900/95 backdrop-blur-sm fixed w-full top-20 z-40 py-4 shadow-xl" id="mobile-menu" style="display: none;">
+    <div class="container mx-auto px-6">
+      <ul class="space-y-4 text-center">
+        <li><a href="#about" class="block py-2 hover:text-emerald transition-colors">About</a></li>
+        <li><a href="#features" class="block py-2 hover:text-red transition-colors">Features</a></li>
+        <li><a href="#how-it-works" class="block py-2 hover:text-emerald transition-colors">How It Works</a></li>
+        <li><a href="#contact" class="block py-2 hover:text-red transition-colors">Contact</a></li>
+        <li class="pt-4 border-t border-gray-800">
+          <a href="users/user_login.php" class="block py-3 rounded-lg font-medium">Login</a>
+        </li>
+        <li>
+          <a href="users/user_register.php" class="btn-primary block py-3 rounded-lg font-medium text-white">Get Started</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="min-h-screen flex items-center justify-center relative overflow-hidden hero-pattern">
+    <div class="absolute inset-0 z-0">
+      <div class="absolute top-0 right-0 w-64 h-64 bg-emerald-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
+      <div class="absolute bottom-0 left-0 w-64 h-64 bg-red-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
+    </div>
+    
+    <div class="container mx-auto px-6 lg:px-12 z-10 py-20">
+      <div class="flex flex-col lg:flex-row items-center">
+        <div class="lg:w-1/2 text-center lg:text-left mb-12 lg:mb-0">
+          <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6">
+            <span class="gradient-text">Fast & Reliable</span><br>
+            Delivery Services
+          </h1>
+          <p class="text-xl text-gray-400 mb-8 max-w-lg mx-auto lg:mx-0">
+            Experience seamless logistics with our cutting-edge delivery platform. Fast, secure, and transparent.
+          </p>
+          <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6 justify-center lg:justify-start">
+            <a href="users/user_register.php" class="btn-primary px-8 py-4 rounded-lg text-lg font-semibold">
+              Get Started <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+            <a href="drivers/driver_login.php" class="glass-card px-8 py-4 rounded-lg text-lg font-semibold border border-gray-800 hover:border-red transition-colors">
+              Become a Driver
+            </a>
+          </div>
+        </div>
+        
+        <div class="lg:w-1/2 flex justify-center relative">
+          <div class="delivery-truck moving-truck">
+            <div class="truck-cab"></div>
+            <div class="truck-window"></div>
+            <div class="truck-light"></div>
+            <div class="truck-body"></div>
+            <div class="truck-wheel wheel-1"></div>
+            <div class="truck-wheel wheel-2"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="py-16 bg-emerald-gradient">
+    <div class="container mx-auto px-6">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <div class="glass-card p-6 rounded-xl border border-emerald">
+          <div class="text-4xl font-bold text-emerald mb-2">10K+</div>
+          <div class="text-gray-400">Deliveries Completed</div>
+        </div>
+        <div class="glass-card p-6 rounded-xl border border-red">
+          <div class="text-4xl font-bold text-red mb-2">500+</div>
+          <div class="text-gray-400">Active Drivers</div>
+        </div>
+        <div class="glass-card p-6 rounded-xl border border-emerald">
+          <div class="text-4xl font-bold text-emerald mb-2">99%</div>
+          <div class="text-gray-400">On-Time Rate</div>
+        </div>
+        <div class="glass-card p-6 rounded-xl border border-red">
+          <div class="text-4xl font-bold text-red mb-2">4.9</div>
+          <div class="text-gray-400">Customer Rating</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="py-20">
+    <div class="container mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold mb-4">About <span class="gradient-text">DeliverDash</span></h2>
+        <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+          We're revolutionizing the delivery industry with technology-driven solutions that prioritize speed, security, and customer satisfaction.
+        </p>
+      </div>
+      
+      <div class="flex flex-col lg:flex-row items-center gap-12">
+        <div class="lg:w-1/2">
+          <div class="relative h-96">
+            <div class="absolute top-0 left-0 w-64 h-64 bg-emerald-500/20 rounded-full filter blur-3xl"></div>
+            <div class="absolute bottom-0 right-0 w-64 h-64 bg-red-500/20 rounded-full filter blur-3xl"></div>
+            <div class="relative z-10 flex items-center justify-center h-full">
+              <div class="w-64 h-64 rounded-full bg-emerald-500/10 border-4 border-emerald-500/30 flex items-center justify-center pulse">
+                <i class="fas fa-truck-fast text-6xl text-emerald-400 animate-float"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="lg:w-1/2">
+          <div class="space-y-6">
+            <div class="glass-card p-6 rounded-xl border-l-4 border-emerald">
+              <div class="flex items-start">
+                <div class="bg-emerald-500/10 p-3 rounded-lg mr-4">
+                  <i class="fas fa-bolt text-emerald-400 text-xl"></i>
+                </div>
+                <div>
+                  <h3 class="text-xl font-semibold mb-2">Lightning Fast Delivery</h3>
+                  <p class="text-gray-400">Our optimized routing system ensures your packages arrive in record time.</p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="glass-card p-6 rounded-xl border-l-4 border-red">
+              <div class="flex items-start">
+                <div class="bg-red-500/10 p-3 rounded-lg mr-4">
+                  <i class="fas fa-shield-alt text-red-400 text-xl"></i>
+                </div>
+                <div>
+                  <h3 class="text-xl font-semibold mb-2">Secure Handling</h3>
+                  <p class="text-gray-400">Every package is handled with care and tracked throughout its journey.</p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="glass-card p-6 rounded-xl border-l-4 border-emerald">
+              <div class="flex items-start">
+                <div class="bg-emerald-500/10 p-3 rounded-lg mr-4">
+                  <i class="fas fa-chart-line text-emerald-400 text-xl"></i>
+                </div>
+                <div>
+                  <h3 class="text-xl font-semibold mb-2">Real-Time Tracking</h3>
+                  <p class="text-gray-400">Follow your delivery every step of the way with our live tracking system.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features" class="py-20 bg-emerald-gradient">
+    <div class="container mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold mb-4">Our <span class="gradient-text">Features</span></h2>
+        <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+          Discover what makes DeliverDash the preferred choice for thousands of customers.
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="feature-card glass-card p-8 rounded-xl border border-emerald transition-all duration-300">
+          <div class="bg-emerald-500/10 p-4 rounded-full w-16 h-16 flex items-center justify-center mb-6">
+            <i class="fas fa-map-marker-alt text-emerald-400 text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">Smart Routing</h3>
+          <p class="text-gray-400">Our AI-powered routing system finds the fastest path for your deliveries.</p>
+        </div>
+        
+        <div class="feature-card glass-card p-8 rounded-xl border border-red transition-all duration-300">
+          <div class="bg-red-500/10 p-4 rounded-full w-16 h-16 flex items-center justify-center mb-6">
+            <i class="fas fa-bell text-red-400 text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">Instant Notifications</h3>
+          <p class="text-gray-400">Get real-time updates about your delivery status.</p>
+        </div>
+        
+        <div class="feature-card glass-card p-8 rounded-xl border border-emerald transition-all duration-300">
+          <div class="bg-emerald-500/10 p-4 rounded-full w-16 h-16 flex items-center justify-center mb-6">
+            <i class="fas fa-lock text-emerald-400 text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">Secure Payments</h3>
+          <p class="text-gray-400">Multiple secure payment options with end-to-end encryption.</p>
+        </div>
+        
+        <div class="feature-card glass-card p-8 rounded-xl border border-red transition-all duration-300">
+          <div class="bg-red-500/10 p-4 rounded-full w-16 h-16 flex items-center justify-center mb-6">
+            <i class="fas fa-user-shield text-red-400 text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">Verified Drivers</h3>
+          <p class="text-gray-400">All our drivers undergo rigorous background checks.</p>
+        </div>
+        
+        <div class="feature-card glass-card p-8 rounded-xl border border-emerald transition-all duration-300">
+          <div class="bg-emerald-500/10 p-4 rounded-full w-16 h-16 flex items-center justify-center mb-6">
+            <i class="fas fa-clock text-emerald-400 text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">24/7 Support</h3>
+          <p class="text-gray-400">Our customer support team is available round the clock.</p>
+        </div>
+        
+        <div class="feature-card glass-card p-8 rounded-xl border border-red transition-all duration-300">
+          <div class="bg-red-500/10 p-4 rounded-full w-16 h-16 flex items-center justify-center mb-6">
+            <i class="fas fa-chart-pie text-red-400 text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">Analytics Dashboard</h3>
+          <p class="text-gray-400">Track your delivery history and statistics.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section id="how-it-works" class="py-20">
+    <div class="container mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold mb-4">How <span class="gradient-text">It Works</span></h2>
+        <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+          Getting your items delivered has never been easier. Just follow these simple steps.
+        </p>
+      </div>
+      
+      <div class="relative">
+        <div class="hidden lg:block absolute left-1/2 top-0 h-full w-1 bg-gradient-to-b from-emerald-400 to-red-500 -ml-0.5"></div>
+        
+        <div class="space-y-12 lg:space-y-0">
+          <!-- Step 1 -->
+          <div class="lg:flex justify-between items-center">
+            <div class="lg:w-5/12 mb-8 lg:mb-0 text-center lg:text-right">
+              <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-emerald-500/10 text-emerald-400 text-2xl font-bold mb-4 lg:mx-auto lg:mr-0">
+                1
+              </div>
+              <h3 class="text-2xl font-semibold mb-3">Request a Delivery</h3>
+              <p class="text-gray-400">Enter your delivery details through our app or website and get matched with the best available driver.</p>
+            </div>
+            <div class="lg:w-5/12">
+              <div class="glass-card p-6 rounded-xl border border-emerald">
+                <div class="flex justify-center">
+                  <i class="fas fa-mobile-screen text-6xl text-emerald-400"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Step 2 -->
+          <div class="lg:flex justify-between items-center flex-row-reverse">
+            <div class="lg:w-5/12 mb-8 lg:mb-0 text-center lg:text-left">
+              <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-red-500/10 text-red-400 text-2xl font-bold mb-4 lg:mx-auto lg:ml-0">
+                2
+              </div>
+              <h3 class="text-2xl font-semibold mb-3">Track in Real-Time</h3>
+              <p class="text-gray-400">Follow your package's journey with live GPS tracking and receive status notifications.</p>
+            </div>
+            <div class="lg:w-5/12">
+              <div class="glass-card p-6 rounded-xl border border-red">
+                <div class="flex justify-center">
+                  <i class="fas fa-map-location-dot text-6xl text-red-400"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Step 3 -->
+          <div class="lg:flex justify-between items-center">
+            <div class="lg:w-5/12 mb-8 lg:mb-0 text-center lg:text-right">
+              <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-emerald-500/10 text-emerald-400 text-2xl font-bold mb-4 lg:mx-auto lg:mr-0">
+                3
+              </div>
+              <h3 class="text-2xl font-semibold mb-3">Secure Delivery</h3>
+              <p class="text-gray-400">Your package arrives safely with photo confirmation and recipient verification.</p>
+            </div>
+            <div class="lg:w-5/12">
+              <div class="glass-card p-6 rounded-xl border border-emerald">
+                <div class="flex justify-center">
+                  <i class="fas fa-box-open text-6xl text-emerald-400"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Step 4 -->
+          <div class="lg:flex justify-between items-center flex-row-reverse">
+            <div class="lg:w-5/12 mb-8 lg:mb-0 text-center lg:text-left">
+              <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-red-500/10 text-red-400 text-2xl font-bold mb-4 lg:mx-auto lg:ml-0">
+                4
+              </div>
+              <h3 class="text-2xl font-semibold mb-3">Rate & Review</h3>
+              <p class="text-gray-400">Share your experience to help us improve our services.</p>
+            </div>
+            <div class="lg:w-5/12">
+              <div class="glass-card p-6 rounded-xl border border-red">
+                <div class="flex justify-center">
+                  <i class="fas fa-star text-6xl text-red-400"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="py-20 bg-emerald-gradient">
+    <div class="container mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold mb-4">What Our <span class="gradient-text">Customers Say</span></h2>
+        <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+          Don't just take our word for it. Here's what our customers have to say.
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="glass-card p-8 rounded-xl border border-emerald">
+          <div class="flex items-center mb-4">
+            <div class="w-12 h-12 rounded-full overflow-hidden mr-4 bg-emerald-500/10 flex items-center justify-center">
+              <i class="fas fa-user text-emerald-400 text-xl"></i>
+            </div>
+            <div>
+              <h4 class="font-semibold">Angelica Marie C.</h4>
+              <div class="flex text-yellow-400">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+            </div>
+          </div>
+          <p class="text-gray-400">"wow. same as always review ko. very professional-looking siya"</p>
+        </div>
+        
+        <div class="glass-card p-8 rounded-xl border border-red">
+          <div class="flex items-center mb-4">
+            <div class="w-12 h-12 rounded-full overflow-hidden mr-4 bg-red-500/10 flex items-center justify-center">
+              <i class="fas fa-user text-red-400 text-xl"></i>
+            </div>
+            <div>
+              <h4 class="font-semibold">Stephen Jr. M.</h4>
+              <div class="flex text-yellow-400">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+              </div>
+            </div>
+          </div>
+          <p class="text-gray-400">"From BSIT 3 - A, I'm the creator of this website"</p>
+        </div>
+        
+        <div class="glass-card p-8 rounded-xl border border-emerald">
+          <div class="flex items-center mb-4">
+            <div class="w-12 h-12 rounded-full overflow-hidden mr-4 bg-emerald-500/10 flex items-center justify-center">
+              <i class="fas fa-user text-emerald-400 text-xl"></i>
+            </div>
+            <div>
+              <h4 class="font-semibold">Keren W.</h4>
+              <div class="flex text-yellow-400">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+            </div>
+          </div>
+          <p class="text-gray-400">"there so many room for improvement, but i love the UI design and the concept, keep it up ❤️"</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-20 relative overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <div class="absolute top-0 right-0 w-64 h-64 bg-emerald-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10"></div>
+      <div class="absolute bottom-0 left-0 w-64 h-64 bg-red-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10"></div>
+    </div>
+    
+    <div class="container mx-auto px-6 text-center relative z-10">
+      <div class="glass-card max-w-4xl mx-auto p-12 rounded-2xl border border-emerald">
+        <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to Experience <span class="gradient-text">Premium Delivery?</span></h2>
+        <p class="text-xl text-gray-400 mb-8 max-w-2xl mx-auto">
+          Join thousands of satisfied customers who trust DeliverDash for their delivery needs.
+        </p>
+        <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6">
+          <a href="users/user_register.php" class="btn-primary px-8 py-4 rounded-lg text-lg font-semibold">
+            Get Started Now
+          </a>
+          <a href="drivers/driver_login.php" class="btn-secondary px-8 py-4 rounded-lg text-lg font-semibold">
+            Become a Driver
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-20">
+    <div class="container mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold mb-4">Contact <span class="gradient-text">Us</span></h2>
+        <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+          Have questions? We're here to help. Get in touch with our team.
+        </p>
+      </div>
+      
+      <div class="flex flex-col lg:flex-row gap-12">
+        <div class="lg:w-1/2">
+          <form class="space-y-6">
+            <div>
+              <label for="name" class="block text-sm font-medium text-gray-400 mb-2">Your Name</label>
+              <input type="text" id="name" class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent" placeholder="John Doe">
+            </div>
+            <div>
+              <label for="email" class="block text-sm font-medium text-gray-400 mb-2">Email Address</label>
+              <input type="email" id="email" class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-transparent" placeholder="your@email.com">
+            </div>
+            <div>
+              <label for="message" class="block text-sm font-medium text-gray-400 mb-2">Your Message</label>
+              <textarea id="message" rows="5" class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent" placeholder="How can we help you?"></textarea>
+            </div>
+            <button type="submit" class="btn-primary w-full py-4 rounded-lg font-semibold">
+              Send Message
+            </button>
+          </form>
+        </div>
+        
+        <div class="lg:w-1/2">
+          <div class="glass-card p-8 rounded-xl h-full border border-red">
+            <h3 class="text-2xl font-semibold mb-6">Our Contact Information</h3>
+            
+            <div class="space-y-6">
+              <div class="flex items-start">
+                <div class="bg-emerald-500/10 p-3 rounded-lg mr-4">
+                  <i class="fas fa-envelope text-emerald-400"></i>
+                </div>
+                <div>
+                  <h4 class="font-medium text-gray-400 mb-1">Email</h4>
+                  <a href="mailto:support@deliverdash.com" class="text-emerald-400 hover:text-emerald-300">support@deliverdash.com</a>
+                </div>
+              </div>
+              
+              <div class="flex items-start">
+                <div class="bg-red-500/10 p-3 rounded-lg mr-4">
+                  <i class="fas fa-phone-alt text-red-400"></i>
+                </div>
+                <div>
+                  <h4 class="font-medium text-gray-400 mb-1">Phone</h4>
+                  <a href="tel:+1234567890" class="text-red-400 hover:text-red-300">+63 917 123 4567</a>
+                </div>
+              </div>
+              
+              <div class="flex items-start">
+                <div class="bg-emerald-500/10 p-3 rounded-lg mr-4">
+                  <i class="fas fa-map-marker-alt text-emerald-400"></i>
+                </div>
+                <div>
+                  <h4 class="font-medium text-gray-400 mb-1">Address</h4>
+                  <p class="text-gray-400">Janiuay, Iloilo</p>
+                </div>
+              </div>
+              
+              <div class="flex items-start pt-6">
+                <div class="bg-red-500/10 p-3 rounded-lg mr-4">
+                  <i class="fas fa-clock text-red-400"></i>
+                </div>
+                <div>
+                  <h4 class="font-medium text-gray-400 mb-1">Business Hours</h4>
+                  <p class="text-gray-400">Monday - Friday: 9am - 6pm<br>Saturday: 10am - 4pm</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900/80 border-t border-gray-800 py-12">
+    <div class="container mx-auto px-6">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <div class="mb-8 md:mb-0">
+          <a href="#" class="text-3xl font-extrabold">
+            <span class="text-white">Deliver</span><span class="text-red">Dash</span>
+          </a>
+          <p class="text-gray-400 mt-4 max-w-md">
+            Revolutionizing delivery services with speed, security, and customer satisfaction at our core.
+          </p>
+        </div>
+        
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-12">
+          <div>
+            <h4 class="text-lg font-semibold mb-4">Company</h4>
+            <ul class="space-y-2">
+              <li><a href="#about" class="text-gray-400 hover:text-emerald transition-colors">About Us</a></li>
+              <li><a href="#features" class="text-gray-400 hover:text-red transition-colors">Features</a></li>
+              <li><a href="#how-it-works" class="text-gray-400 hover:text-emerald transition-colors">How It Works</a></li>
+            </ul>
+          </div>
+          
+          <div>
+            <h4 class="text-lg font-semibold mb-4">Resources</h4>
+            <ul class="space-y-2">
+              <li><a href="#" class="text-gray-400 hover:text-red transition-colors">Help Center</a></li>
+              <li><a href="#" class="text-gray-400 hover:text-emerald transition-colors">Privacy Policy</a></li>
+              <li><a href="#" class="text-gray-400 hover:text-red transition-colors">Terms of Service</a></li>
+            </ul>
+          </div>
+          
+          <div>
+            <h4 class="text-lg font-semibold mb-4">Connect</h4>
+            <div class="flex space-x-4">
+              <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:text-emerald hover:bg-gray-700 transition-colors">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:text-red hover:bg-gray-700 transition-colors">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:text-emerald hover:bg-gray-700 transition-colors">
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:text-red hover:bg-gray-700 transition-colors">
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500">
+        <p>&copy; 2025 DeliverDash. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.style.display = mobileMenu.style.display === 'none' ? 'block' : 'none';
+    });
+    
+    // Close mobile menu when clicking on a link
+    document.querySelectorAll('#mobile-menu a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.style.display = 'none';
+      });
+    });
+    
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 80,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
